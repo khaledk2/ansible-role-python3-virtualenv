@@ -28,12 +28,12 @@
   ansible.builtin.command: "python{{ python_version }} -m ensurepip --upgrade"
   args:
     creates: "/usr/local/bin/pip{{ python_version }}"
-  when: {{ python_version }} in new_python
+  when: "{{ python_version }} in new_python"
 
 
 - name: Install pip for Python  using ensurepip
   ansible.builtin.command: "curl -sS https://bootstrap.pypa.io/get-pip.py | python{{ python_version }}"
-  when: {{ python_version }} in old_python
+  when: "{{ python_version }} in old_python"
 
 
 - name: Install setuptools for Python

@@ -22,4 +22,4 @@
       - python3-pip
       - python3-setuptools
     state: present
-  when: {{ python_version }} == "3.9"
+  when: "{{ python_version }} == '3.9'"
