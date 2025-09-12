@@ -6,6 +6,11 @@
     state: present
     update_cache: yes
 
+- name: install curl
+  ansible.builtin.apt:
+    name: curl
+    state: present
+
 - name: Add deadsnakes PPA
   ansible.builtin.apt_repository:
     repo: ppa:deadsnakes/ppa
