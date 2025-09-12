@@ -1,1 +1,9 @@
 python_version: "3.10"
+
+old_python:
+      - 3.9
+      - 3.10
+
+new_python:
+      - 3.11
+      - 3.12
