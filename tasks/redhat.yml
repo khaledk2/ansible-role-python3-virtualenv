@@ -10,7 +10,7 @@
       - "python{{ python_version }}-pip"
       - "python{{ python_version }}-setuptools"
     state: present
-    when: python_version in new_python
+  when: python_version in new_python
 
 
 - name: python3 venv | install packages
