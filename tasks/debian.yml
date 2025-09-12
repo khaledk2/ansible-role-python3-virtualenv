@@ -48,7 +48,7 @@
 
 - name: Install pip for Python 2
   ansible.builtin.command: python{{ python_version }} get-pip.py
-  when: python_version in old_python nd not pip_stat.stat.exists
+  when: python_version in old_python and not pip_stat.stat.exists
 
 
 - name: Install setuptools for Python
