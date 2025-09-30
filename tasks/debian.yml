@@ -42,11 +42,11 @@
   register: pip_stat
 
 
-- name: Install pip for Python 1
+- name: Install pip for Python 3
   ansible.builtin.command: curl -sS -o get-pip.py https://bootstrap.pypa.io/get-pip.py
   when: python_version in old_python and not pip_stat.stat.exists
 
-- name: Install pip for Python 2
+- name: Install pip for Python 3
   ansible.builtin.command: python{{ python_version }} get-pip.py
   when: python_version in old_python and not pip_stat.stat.exists
 
