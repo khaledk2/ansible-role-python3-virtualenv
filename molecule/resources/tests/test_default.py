@@ -7,11 +7,8 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 
 def test_virtualenv(host):
     venv = '/opt/test/python3-virtualenv'
-    output = host.check_output(venv + '/bin/python --version')
-    print(repr(output))
-    assert output.strip() == 'Python 3.11.18'
-    host.check_output(venv + '/bin/python --version').startswith('Python 3.11.19')
-    host.check_output(venv + '/bin/pip --version').startswith('Python 3.11')
+    assert host.check_output(venv + '/bin/python --version').startswith('Python 3.11.18')
+    assert host.check_output(venv + '/bin/pip --version').startswith('Python 3.11')
     assert host.file(venv + '/bin/python').is_file
     assert host.file(venv + '/bin/python3').is_file
     assert host.file(venv + '/bin/pip').is_file
