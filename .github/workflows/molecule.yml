@@ -87,6 +87,7 @@ jobs:
       - name: Dry run — do not publish
         run: |
             echo "Would publish tag $GITHUB_REF_NAME"
+            echo ${{ steps.role-name.outputs.rolename }}
 
       - name: Debug working directory
         run: |
