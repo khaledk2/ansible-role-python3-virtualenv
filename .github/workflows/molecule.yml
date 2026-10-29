@@ -43,7 +43,7 @@ jobs:
 
   publish:
     name: Galaxy
-    if: startsWith(github.ref, 'refs/tags')
+    #if: startsWith(github.ref, 'refs/tags')
     needs:
       - test
     runs-on: ubuntu-24.04
@@ -52,8 +52,25 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: '3.13'
-      - name: galaxy
-        uses: ansible-actions/ansible-galaxy-action@v1.2.0
-        with:
-          galaxy_api_key: ${{ secrets.GALAXY_API_KEY }}
-          galaxy_version: ${{  github.ref_name }}
+      - name: Install Ansible
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install ansible-core
+
+      - name: Verify Python and Ansible
+        run: |
+          python --version
+          python -m pip install ansible-core
+          ansible --version
+          python -c "import sys; print(sys.executable)"
+
+      - name: Test for Dataclasses AttributeError
+        run: |
+          echo "=== VERIFYING PYTHON RUNTIME COMPATIBILITY ==="
+          python -c "from ansible.cli.galaxy import main; print('Success: Ansible Galaxy module loaded without errors.')"
+
+      - name: Dry Run Test (PR Protection)
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "=== PR RUN: SIMULATING PUBLISH ==="
+          echo "Command to deploy on merge: ansible-galaxy role import --api-key SECRET_KEY --branch ${{ github.head_ref }} ${{ github.repository_owner }} ${{ github.event.repository.name }}"
