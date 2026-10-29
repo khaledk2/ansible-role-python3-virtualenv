@@ -83,6 +83,7 @@ jobs:
         run: |
             name=$(grep 'role_name' meta/main.yml | sed -r 's/^[^:]*:(.*)$/\1/' | tr -d '[:space:]')  # noqa
             echo "rolename=$name" >> "$GITHUB_OUTPUT"
+            echo "role name is $name" 
 
       - name: Dry run — do not publish
         run: |
