@@ -69,8 +69,3 @@ jobs:
           echo "=== VERIFYING PYTHON RUNTIME COMPATIBILITY ==="
           python -c "from ansible.cli.galaxy import main; print('Success: Ansible Galaxy module loaded without errors.')"
 
-      - name: Dry Run Test (PR Protection)
-        #if: github.event_name == 'pull_request'
-        run: |
-          echo "=== PR RUN: SIMULATING PUBLISH ==="
-          echo "Command to deploy on merge: ansible-galaxy role import --api-key SECRET_KEY --branch ${{ github.head_ref }} ${{ github.repository_owner }} ${{ github.event.repository.name }}"
