@@ -76,3 +76,9 @@ jobs:
           echo "Repository: ${{ github.repository }}"
           echo "Git ref: ${{ github.ref }}"
           echo "Ref name: ${{ github.ref_name }}"
+
+      - name: Read the role name
+        id: role-name
+        run: |
+            name=$(grep 'role_name' meta/main.yml | sed -r 's/^[^:]*:(.*)$/\1/' | tr -d '[:space:]')  # noqa
+            echo "rolename=$name" >> "$GITHUB_OUTPUT"
