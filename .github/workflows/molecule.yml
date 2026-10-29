@@ -86,3 +86,10 @@ jobs:
       - name: Dry run — do not publish
         run: |
             echo "Would publish tag $GITHUB_REF_NAME"
+
+      - name: Debug working directory
+        run: |
+          pwd
+          ls -la
+          ls -la meta/ || true
+          find . -name main.yml -path '*/meta/main.yml' -print
