@@ -1,5 +1,5 @@
 # The Python version, the role supports 3.11 and 3.12
-python_version: "3.11"
+python_version: "3.12"
 # The base location of the Virtual environment
 virtualenv_basedir: "/opt"
 # The virtual environment name
